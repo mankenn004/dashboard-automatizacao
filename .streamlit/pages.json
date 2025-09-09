@@ -9,6 +9,11 @@
       "page": "hipoteses_diagnosticas.py",
       "title": "Hipóteses Diagnósticas",
       "icon": "🧠"
+    },
+    {
+      "page": "info_convenios.py",
+      "title": "Info Convênios",
+      "icon": "📝"
     }
   ]
 }
