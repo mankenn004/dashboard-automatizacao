@@ -1,0 +1,14 @@
+{
+  "pages": [
+    {
+      "page": "gerador_negativa.py",
+      "title": "Gerador de Negativa",
+      "icon": "📄"
+    },
+    {
+      "page": "hipoteses_diagnosticas.py",
+      "title": "Hipóteses Diagnósticas",
+      "icon": "🧠"
+    }
+  ]
+}

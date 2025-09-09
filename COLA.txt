@@ -1,0 +1,4 @@
+cd C:\Users\Pedro\Desktop\ProjetosPython
+streamlit run app.py
+streamlit run gerador_negativa.py
+streamlit run hipoteses_diagnosticas.py
