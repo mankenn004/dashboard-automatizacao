@@ -34,6 +34,8 @@ O convênio {convenio} *não autorizou* estes exames do agendamento de {data_age
 Para mais informações, entre em contato com sua operadora de saúde.
 
 ❗ Se quiser reagendar ou cancelar este agendamento, acesse o nosso app ou site."""
+    else:
+        st.error("Por favor, preencha todos os campos para gerar o texto.")
 
 # --- Exibir o texto gerado e o botão de copiar ---
 if 'texto_gerado' in st.session_state:
@@ -44,17 +46,12 @@ if 'texto_gerado' in st.session_state:
     copy_button = st.button("Copiar Texto Gerado")
     
     if copy_button:
-        components.html(
-            """
+        js_code = f"""
             <script>
-                var textarea = document.querySelector('textarea[data-testid="stTextarea"]');
-                if (textarea) {
-                    textarea.select();
-                    document.execCommand('copy');
-                }
+                navigator.clipboard.writeText("{st.session_state['texto_gerado'].replace('"', '\\"').replace('\\n', '\\n')}").then(() => {{
+                    // Opcional: feedback para o usuário
+                }});
             </script>
-            """,
-            height=0,
-            width=0,
-        )
+        """
+        components.html(js_code, height=0, width=0)
         st.success("Texto copiado para a área de transferência!")
