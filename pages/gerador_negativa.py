@@ -1,6 +1,6 @@
 import streamlit as st
 import pandas as pd
-import streamlit.components.v1 as components
+from streamlit_extras.st_copy_to_clipboard import st_copy_to_clipboard
 
 # --- Título e descrição da página ---
 st.title("Gerador de Texto de Negativa")
@@ -41,17 +41,6 @@ Para mais informações, entre em contato com sua operadora de saúde.
 if 'texto_gerado' in st.session_state:
     st.markdown("---")
     st.markdown("### Texto Gerado:")
-    st.text_area("Selecione e copie o texto abaixo:", value=st.session_state['texto_gerado'], height=350, key='texto_para_copiar')
-
-    copy_button = st.button("Copiar Texto Gerado")
+    st.text_area("Selecione e copie o texto abaixo:", value=st.session_state['texto_gerado'], height=350)
     
-    if copy_button:
-        js_code = f"""
-            <script>
-                navigator.clipboard.writeText("{st.session_state['texto_gerado'].replace('"', '\\"').replace('\\n', '\\n')}").then(() => {{
-                    // Opcional: feedback para o usuário
-                }});
-            </script>
-        """
-        components.html(js_code, height=0, width=0)
-        st.success("Texto copiado para a área de transferência!")
+    st_copy_to_clipboard(st.session_state['texto_gerado'], label="Copiar Texto")
