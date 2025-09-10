@@ -45,10 +45,13 @@ if 'texto_gerado' in st.session_state:
     
     if copy_button:
         components.html(
-            f"""
+            """
             <script>
-                var text = document.getElementById('texto_para_copiar').value;
-                navigator.clipboard.writeText(text);
+                var textarea = document.querySelector('textarea[data-testid="stTextarea"]');
+                if (textarea) {
+                    textarea.select();
+                    document.execCommand('copy');
+                }
             </script>
             """,
             height=0,
