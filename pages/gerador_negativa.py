@@ -31,7 +31,7 @@ O convênio {convenio} *não autorizou* estes exames do agendamento de {data_age
 
 Para mais informações, entre em contato com sua operadora de saúde.
 
-?? Se quiser reagendar ou cancelar este agendamento, acesse o nosso app ou site."""
+❗ Se quiser reagendar ou cancelar este agendamento, acesse o nosso app ou site."""
 
         # Exibe o texto gerado em uma caixa de texto para fácil cópia
         st.markdown("### Texto Gerado:")
