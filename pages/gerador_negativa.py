@@ -20,13 +20,13 @@ exames = st.text_area("Digite cada exame em uma linha separada.")
 if st.button("Gerar Texto"):
     if nome_cliente and convenio and data_agendamento and exames:
         # Divide os exames por linha e formata com bullets
-        lista_exames = [f"• {exame.strip()}" for exame in exames.split('\n') if exame.strip()]
+        lista_exames = [f"• *{exame.strip()}*" for exame in exames.split('\n') if exame.strip()]
         exames_formatados = "\n".join(lista_exames)
 
         # Monta o texto completo
-        texto_gerado = f"""Olá, {nome_cliente}!
-Somos do {marca}
-O convênio {convenio} *não autorizou* estes exames do agendamento de {data_agendamento}:
+        texto_gerado = f"""Olá, *{nome_cliente}*!
+Somos do *{marca}*
+O convênio *{convenio}* não autorizou estes exames do agendamento de *{data_agendamento}*:
 {exames_formatados}
 
 Para mais informações, entre em contato com sua operadora de saúde.
