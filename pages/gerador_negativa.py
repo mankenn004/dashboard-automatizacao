@@ -1,6 +1,4 @@
 import streamlit as st
-import pandas as pd
-from streamlit_extras.st_copy_to_clipboard import st_copy_to_clipboard
 
 # --- Título e descrição da página ---
 st.title("Gerador de Texto de Negativa")
@@ -9,7 +7,7 @@ st.markdown("---")
 
 # --- Campos de entrada de dados ---
 nome_cliente = st.text_input("Nome do Cliente")
-marca = st.text_input("Sua Marca (ex: Fleury, A+)")
+marca = st.text_input("Marca (ex: Fleury, A+)")
 convenio = st.text_input("Nome do Convênio")
 data_agendamento = st.text_input("Data do Agendamento (ex: 24/08/2025)")
 
@@ -18,7 +16,7 @@ st.markdown("---")
 st.write("## Exames não autorizados")
 exames = st.text_area("Digite cada exame em uma linha separada.")
 
-# --- Lógica para gerar o texto ---
+# --- Botão para gerar o texto ---
 if st.button("Gerar Texto"):
     if nome_cliente and convenio and data_agendamento and exames:
         # Divide os exames por linha e formata com bullets
@@ -26,7 +24,7 @@ if st.button("Gerar Texto"):
         exames_formatados = "\n".join(lista_exames)
 
         # Monta o texto completo
-        st.session_state['texto_gerado'] = f"""Olá, {nome_cliente}!
+        texto_gerado = f"""Olá, {nome_cliente}!
 Somos do {marca}
 O convênio {convenio} *não autorizou* estes exames do agendamento de {data_agendamento}:
 {exames_formatados}
@@ -34,13 +32,9 @@ O convênio {convenio} *não autorizou* estes exames do agendamento de {data_age
 Para mais informações, entre em contato com sua operadora de saúde.
 
 ❗ Se quiser reagendar ou cancelar este agendamento, acesse o nosso app ou site."""
+
+        # Exibe o texto gerado em uma caixa de texto para fácil cópia
+        st.markdown("### Texto Gerado:")
+        st.text_area("Copie o texto abaixo:", value=texto_gerado, height=350)
     else:
         st.error("Por favor, preencha todos os campos para gerar o texto.")
-
-# --- Exibir o texto gerado e o botão de copiar ---
-if 'texto_gerado' in st.session_state:
-    st.markdown("---")
-    st.markdown("### Texto Gerado:")
-    st.text_area("Selecione e copie o texto abaixo:", value=st.session_state['texto_gerado'], height=350)
-    
-    st_copy_to_clipboard(st.session_state['texto_gerado'], label="Copiar Texto")
